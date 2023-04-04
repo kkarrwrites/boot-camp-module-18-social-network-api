@@ -1,2 +1,1 @@
-# boot-camp-module-18-social-network-api
- 
+# Boot Camp - Module 18 - NoSQL Challenge: Social Network API
