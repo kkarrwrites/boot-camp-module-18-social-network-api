@@ -1,4 +1,4 @@
-const { User, Thought, Reaction } = require("../models");
+const { User, Thought, Reaction } = require('../models');
 
 // /api/users
 // GET all users
