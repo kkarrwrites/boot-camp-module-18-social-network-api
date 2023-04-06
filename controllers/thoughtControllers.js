@@ -1,4 +1,5 @@
-const { User, Thought, Reaction } = require('../models');
+const { ObjectId } = require('mongoose').Types;
+const { Thought } = require('../models');
 
 // /api/thoughts
 module.exports = {
