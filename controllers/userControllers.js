@@ -9,8 +9,7 @@ module.exports = {
       .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err));
   },
-  // GET a single user by its _id
-  // TODO: populated thought and friend data
+  // GET a single user by its _id and TODO: populated thought and friend data
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
       .then((user) =>
@@ -30,6 +29,7 @@ module.exports = {
   },
   // TODO: PUT to update a user by its _id
   // DELETE to remove user by its _id
+  // BONUS: Remove a user's associated thoughts when deleted
   deleteUser(req, res) {
     User.findOneAndRemove({ _id: req.params.userId })
       .then((user) =>
@@ -50,7 +50,6 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // BONUS: Remove a user's associated thoughts when deleted
 };
 
 // /api/users/:userId/friends/:friendId
