@@ -1,5 +1,5 @@
-const { User, Thought, Reaction } = require('../models');
-const { modelName } = require('../models/User');
+const { ObjectId } = require('mongoose').Types;
+const { User } = require('../models');
 
 // /api/users
 module.exports = {
