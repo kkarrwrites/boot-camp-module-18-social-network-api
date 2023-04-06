@@ -13,8 +13,6 @@ router.route('/').get(getUsers).post(createUser);
 router.route('/:userId').get(getSingleUser).delete(deleteUser);
 
 // TODO: PUT to update a user by its _id
-// TODO: DELETE to remove user by its _id
-// BONUS: Remove a user's associated thoughts when deleted
 
 // /api/users/:userId/friends/:friendId
 // TODO: POST to add a new friend to a user's friend list
