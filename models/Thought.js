@@ -10,9 +10,18 @@ const thoughtSchema = new Schema(
       maxLength: 280,
     },
     createdAt: {
-      type: date,
-      default: Date.now,
+      type: Date,
+      default: Date.now(),
       // TODO: Use a getter method to format the timestamp on query
+      get: (date) =>
+        date.toLocaleDateString('en-US', {
+          month: 'long',
+          day: 'numeric',
+          year: 'numeric',
+          hour12: true,
+          hour: 'numeric',
+          minute: 'numeric',
+        }),
     },
     // The user that created this thought
     username: {
