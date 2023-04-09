@@ -20,7 +20,29 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  // TODO: POST to create a new thought (don't forget to push the created thought's _id to the associated user's thoughts array field)
+  // POST to create a new thought and push the created thought's _id to the associated user's thoughts array field
+  createThought(req, res) {
+    Thought.create(req.body)
+      .then((thought) => {
+        User.findByIdAndUpdate(
+          // Filter
+          { _id: req.body.userId },
+          // Update
+          // $push operator appends a specified value to an array
+          { $push: { thoughts: thought } },
+          // { new: true } returns the document after update was applied because by default findOneAndUpdate() returns the document as it was before update was applied
+          { new: true }
+        );
+      })
+      .then((thought) =>
+        !thought
+          ? res.status(400).json({ message: 'No thought with that ID' })
+          : res.json(thought)
+      )
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  },
   // PUT to update a thought by its _id
   updateThought(req, res) {
     Thought.findOneAndUpdate(
