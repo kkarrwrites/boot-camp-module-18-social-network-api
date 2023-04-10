@@ -1,4 +1,3 @@
-const { ObjectId } = require('mongoose').Types;
 const { User } = require('../models');
 
 module.exports = {
@@ -6,7 +5,10 @@ module.exports = {
   getUsers(req, res) {
     User.find()
       .then((users) => res.json(users))
-      .catch((err) => res.status(500).json(err));
+      .catch((err) => {
+        console.log(err);
+        return res.status(500).json(err);
+      });
   },
   // GET a single user by its _id and populate thought and friend data
   getSingleUser(req, res) {
