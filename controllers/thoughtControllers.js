@@ -51,7 +51,7 @@ module.exports = {
       // Update
       // $set operator replaces the value of a field with the specified value
       { $set: req.body },
-      // { run:Validators: true } makes sure that the data added to the database fits the parameters of the database
+      // { runValidators: true } makes sure that the data added to the database fits the parameters of the database
       // { new: true } returns the document after update was applied because by default findOneAndUpdate() returns the document as it was before update was applied
       { runValidators: true, new: true }
     )
@@ -96,7 +96,7 @@ module.exports = {
       // Update
       // $addToSet operator adds a value to an array unless the value is already present, in which case $addToSet does nothing to that array
       { $addToSet: { reactions: req.body } },
-      // { run:Validators: true } makes sure that the data added to the database fits the parameters of the database
+      // { runValidators: true } makes sure that the data added to the database fits the parameters of the database
       // { new: true } returns the document after update was applied because by default findOneAndUpdate() returns the document as it was before update was applied
       { runValidators: true, new: true }
     )
@@ -117,7 +117,7 @@ module.exports = {
       // Update
       // $pull operator removes from an existing array all instances of a value or values that match a specified condition
       { $pull: { reactions: { reactionId: req.params.reactionId } } },
-      // { run:Validators: true } makes sure that the data added to the database fits the parameters of the database
+      // { runValidators: true } makes sure that the data added to the database fits the parameters of the database
       // { new: true } returns the document after update was applied because by default findOneAndUpdate() returns the document as it was before update was applied
       { runValidators: true, new: true }
     )
