@@ -88,6 +88,46 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  // TODO: POST to create a reaction stored in a single thought's reactions array field
-  // TODO: DELETE to pull and remove a reaction by the reaction's reactionId value
+  // POST to create a reaction stored in a single thought's reactions array field
+  createReaction(req, res) {
+    Thought.findOneAndUpdate(
+      // Filter
+      { _id: req.params.thoughtId },
+      // Update
+      // $addToSet operator adds a value to an array unless the value is already present, in which case $addToSet does nothing to that array
+      { $addToSet: { reactions: req.body } },
+      // { run:Validators: true } makes sure that the data added to the database fits the parameters of the database
+      // { new: true } returns the document after update was applied because by default findOneAndUpdate() returns the document as it was before update was applied
+      { runValidators: true, new: true }
+    )
+      .then((reaction) =>
+        !reaction
+          ? res.status(400).json({ message: 'No thought with that ID' })
+          : res.json(reaction)
+      )
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  },
+  // DELETE to pull and remove a reaction by the reaction's reactionId value
+  deleteReaction(req, res) {
+    Thought.findOneAndUpdate(
+      // Filter
+      { _id: req.params.thoughtId },
+      // Update
+      // $pull operator removes from an existing array all instances of a value or values that match a specified condition
+      { $pull: { reactions: { reactionId: req.params.reactionId } } },
+      // { run:Validators: true } makes sure that the data added to the database fits the parameters of the database
+      // { new: true } returns the document after update was applied because by default findOneAndUpdate() returns the document as it was before update was applied
+      { runValidators: true, new: true }
+    )
+      .then((reaction) => {
+        !reaction
+          ? res.status(400).json({ message: 'No thought with that ID' })
+          : res.json(reaction);
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  },
 };
