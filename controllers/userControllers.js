@@ -36,7 +36,7 @@ module.exports = {
       // Update
       // $set operator replaces the value of a field with the specified value
       { $set: req.body },
-      // { run:Validators: true } makes sure that the data added to the database fits the parameters of the database
+      // { runValidators: true } makes sure that the data added to the database fits the parameters of the database
       // { new: true } returns the document after update was applied because by default findOneAndUpdate() returns the document as it was before update was applied
       { runValidators: true, new: true }
     )
@@ -62,6 +62,46 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  // TODO: POST to add a new friend to a user's friend list
-  // TODO: DELETE to remove a friend from a user's friend list
+  // POST to add a new friend to a user's friend list
+  createFriend(req, res) {
+    User.findOneAndUpdate(
+      // Filter
+      { _id: req.params.userId },
+      // Update
+      // $addToSet operator adds a value to an array unless the value is already present, in which case $addToSet does nothing to that array
+      { $addToSet: { friends: req.params.friendId } },
+      // { runValidators: true } makes sure that the data added to the database fits the parameters of the database
+      // { new: true } returns the document after update was applied because by default findOneAndUpdate() returns the document as it was before update was applied
+      { runValidators: true, new: true }
+    )
+      .then((user) =>
+        !user
+          ? res.status(400).json({ message: 'No user with that ID' })
+          : res.json(user)
+      )
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  },
+  // DELETE to remove a friend from a user's friend list
+  deleteFriend(req, res) {
+    User.findOneAndUpdate(
+      // Filter
+      { _id: req.params.userId },
+      // Update
+      // $pull operator removes from an existing array all instances of a value or values that match a specified condition
+      { $pull: { friends: req.params.friendId } },
+      // { runValidators: true } makes sure that the data added to the database fits the parameters of the database
+      // { new: true } returns the document after update was applied because by default findOneAndUpdate() returns the document as it was before update was applied
+      { runValidators: true, new: true }
+    )
+      .then((user) => {
+        !user
+          ? res.status(400).json({ message: 'No user with that ID' })
+          : res.json(user);
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  },
 };
