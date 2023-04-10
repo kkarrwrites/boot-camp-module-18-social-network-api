@@ -40,9 +40,9 @@ const thoughtSchema = new Schema(
 );
 
 // A virtual called reactionCount that retrieves the length of the thought's reactions array field on query.
-thoughtSchema.virtual('reactionCount').get(function () {
-  return this.reactions.length;
-});
+// thoughtSchema.virtual('reactionCount').get(function () {
+//   return this.reactions.length;
+// });
 
 // Initialize User model
 const Thought = model('thought', thoughtSchema);
