@@ -1,5 +1,17 @@
 # Boot Camp - Module 18 - NoSQL Challenge: Social Network API
 
+## About
+
+An API for a social network web application built with Express.js for the routing, MongoDB for the database, and Mongoose ODM.
+
+## Screenshot
+
+![README Screenshot](./public/images/screenshot.jpg)
+
+## Technologies
+
+Node.js, Express.js, MongoDB, Mongoose, Insomnia, ESLint, Dotenv, Markdown, Git, GitHub, VS Code
+
 ## Resources
 
 ### MongoDB
