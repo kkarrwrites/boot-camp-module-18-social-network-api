@@ -21,6 +21,7 @@ module.exports = {
           : res.json(user)
       )
       .catch((err) => {
+        console.log(err);
         res.status(500).json(err);
       });
   },
@@ -28,7 +29,10 @@ module.exports = {
   createUser(req, res) {
     User.create(req.body)
       .then((user) => res.json(user))
-      .catch((err) => res.status(500).json(err));
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
   },
   // PUT to update a user by its _id
   updateUser(req, res) {
@@ -48,6 +52,7 @@ module.exports = {
           : res.json(user)
       )
       .catch((err) => {
+        console.log(err);
         res.status(500).json(err);
       });
   },
@@ -61,6 +66,7 @@ module.exports = {
           : res.json({ message: 'User was deleted' });
       })
       .catch((err) => {
+        console.log(err);
         res.status(500).json(err);
       });
   },
@@ -82,6 +88,7 @@ module.exports = {
           : res.json(user)
       )
       .catch((err) => {
+        console.log(err);
         res.status(500).json(err);
       });
   },
@@ -103,6 +110,7 @@ module.exports = {
           : res.json(user);
       })
       .catch((err) => {
+        console.log(err);
         res.status(500).json(err);
       });
   },
