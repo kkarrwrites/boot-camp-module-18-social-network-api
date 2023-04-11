@@ -4,9 +4,13 @@
 
 An API for a social network web application built with Express.js for the routing, MongoDB for the database, and Mongoose ODM.
 
+## Walkthrough
+
+[Video Walkthrough](https://drive.google.com/file/d/12i51EdHg9lnGYQX3xqQ0XxKKDug1r2kl/view)
+
 ## Screenshot
 
-![README Screenshot](./public/images/screenshot.jpg)
+![README Screenshot](/public/images/screenshot.gif)
 
 ## Technologies
 
