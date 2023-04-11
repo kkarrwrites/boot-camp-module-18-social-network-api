@@ -5,7 +5,10 @@ module.exports = {
   getThoughts(req, res) {
     Thought.find()
       .then((thoughts) => res.json(thoughts))
-      .catch((err) => res.status(500).json(err));
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
   },
   // GET to get a single thought by its _id
   getSingleThought(req, res) {
@@ -16,6 +19,7 @@ module.exports = {
           : res.json(thought)
       )
       .catch((err) => {
+        console.log(err);
         res.status(500).json(err);
       });
   },
@@ -23,12 +27,12 @@ module.exports = {
   createThought(req, res) {
     Thought.create(req.body)
       .then((thought) => {
-        User.findByIdAndUpdate(
+        return User.findOneAndUpdate(
           // Filter
           { _id: req.body.userId },
           // Update
           // $push operator appends a specified value to an array
-          { $push: { thoughts: thought } },
+          { $push: { thoughts: thought._id } },
           // { new: true } returns the document after update was applied because by default findOneAndUpdate() returns the document as it was before update was applied
           { new: true }
         );
@@ -39,6 +43,7 @@ module.exports = {
           : res.json(thought)
       )
       .catch((err) => {
+        console.log(err);
         res.status(500).json(err);
       });
   },
@@ -60,6 +65,7 @@ module.exports = {
           : res.json(thought)
       )
       .catch((err) => {
+        console.log(err);
         res.status(500).json(err);
       });
   },
@@ -105,6 +111,7 @@ module.exports = {
           : res.json(reaction)
       )
       .catch((err) => {
+        console.log(err);
         res.status(500).json(err);
       });
   },
@@ -126,6 +133,7 @@ module.exports = {
           : res.json(reaction);
       })
       .catch((err) => {
+        console.log(err);
         res.status(500).json(err);
       });
   },
