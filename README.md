@@ -16,6 +16,10 @@ An API for a social network web application built with Express.js for the routin
 
 JavsScript, Node.js, Express.js, MongoDB, Mongoose, Insomnia, ESLint, Dotenv, Markdown, Git, GitHub, VS Code
 
+## License
+
+This project is licensed under the MIT License.
+
 ## Resources
 
 ### MongoDB
